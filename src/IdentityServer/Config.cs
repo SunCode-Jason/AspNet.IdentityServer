@@ -1,13 +1,30 @@
-﻿using Duende.IdentityServer.Models;
+﻿using Duende.IdentityServer;
+using Duende.IdentityServer.Models;
+using IdentityModel;
 
 namespace IdentityServer;
 
 public static class Config
 {
+    /// <summary>
+    ///  身份资源
+    /// </summary>
     public static IEnumerable<IdentityResource> IdentityResources =>
         new IdentityResource[]
         {
-            new IdentityResources.OpenId()
+            new IdentityResources.OpenId(),
+            new IdentityResources.Profile(),
+            /*
+                定义名称为：email的资源
+                客户端通过scope值， 获取关联的 UserClaims
+             */
+            new IdentityResource(){
+                Name = "email", // 
+                UserClaims = [
+                JwtClaimTypes.Email,
+                JwtClaimTypes.EmailVerified
+                ]
+            }
         };
 
     public static IEnumerable<ApiScope> ApiScopes =>
@@ -19,6 +36,7 @@ public static class Config
     public static IEnumerable<Client> Clients =>
         new Client[]
             {
+        // machine to machine client (from quickstart 1)
         new Client
         {
             ClientId = "client",
@@ -34,6 +52,27 @@ public static class Config
 
             // scopes that client has access to
             AllowedScopes = { "api1" }
+        },
+        // interactive ASP.NET Core Web App
+        new Client
+        {
+            ClientId = "web",
+            ClientSecrets = { new Secret("secret".Sha256()) },
+
+            AllowedGrantTypes = GrantTypes.Code,
+            
+            // where to redirect to after login
+            RedirectUris = { "https://localhost:5002/signin-oidc" },
+
+            // where to redirect to after logout
+            PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
+
+            AllowedScopes =
+            {
+                IdentityServerConstants.StandardScopes.OpenId,
+                IdentityServerConstants.StandardScopes.Profile,
+                "email"
+            }
         }
     };
 }
