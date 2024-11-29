@@ -25,7 +25,9 @@ builder.Services.AddAuthentication(options =>
         options.Scope.Add("api1");
         options.Scope.Add("offline_access"); // 
         options.Scope.Add("email");
+        options.Scope.Add("color");
         options.ClaimActions.MapJsonKey("email_verified_jason", "email_verified");
+        options.ClaimActions.MapUniqueJsonKey("favorite_color", "favorite_color");
 
 
         options.GetClaimsFromUserInfoEndpoint = true; // additional user claims associated with the profile identity scope displayed 

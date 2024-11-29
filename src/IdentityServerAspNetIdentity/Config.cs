@@ -17,9 +17,13 @@ public static class Config
             new IdentityResource(){
                 Name = "email", // 
                 UserClaims = [
-                JwtClaimTypes.Email,
-                JwtClaimTypes.EmailVerified
+                    JwtClaimTypes.Email,
+                    JwtClaimTypes.EmailVerified
                 ]
+            },
+            new IdentityResource(){
+                Name = "color",
+               UserClaims = ["favorite_color"]
             }
         ];
 
@@ -70,7 +74,8 @@ public static class Config
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     "email",
-                    "api1"
+                    "api1",
+                    "color"
                 }
             },
             // m2m client credentials flow client
