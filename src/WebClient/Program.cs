@@ -54,15 +54,17 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
+//app.MapStaticAssets();
+
 app.MapRazorPages()
-   .WithStaticAssets()
+   //.WithStaticAssets()
    .RequireAuthorization();
 
 app.Run();
