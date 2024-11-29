@@ -66,12 +66,15 @@ public static class Config
 
             // where to redirect to after logout
             PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
-
+            // 允许客户端刷新令牌
+            AllowOfflineAccess = true,
+            // 指定客户端可访问的资源
             AllowedScopes =
             {
                 IdentityServerConstants.StandardScopes.OpenId,
                 IdentityServerConstants.StandardScopes.Profile,
-                "email"
+                "email",
+                "api1"
             }
         }
     };
