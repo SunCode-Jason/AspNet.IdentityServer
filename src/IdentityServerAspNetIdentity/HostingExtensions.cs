@@ -11,7 +11,12 @@ internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddRazorPages();
+        builder.Services
+            .AddRazorPages()
+            .AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AddPageRoute("/Account/Login/Index", "/oauth2.0/authorize");
+            });
 
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -48,6 +53,12 @@ internal static class HostingExtensions
                 options.ClientId = "copy client ID from Google here";
                 options.ClientSecret = "copy client secret from Google here";
             });
+
+        builder.Services.ConfigureApplicationCookie(options =>
+        {
+
+            options.LoginPath = "/oauth2.0/authorize";
+        });
 
         return builder.Build();
     }
