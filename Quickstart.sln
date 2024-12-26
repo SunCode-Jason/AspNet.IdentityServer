@@ -15,13 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServerAspNetIdentit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptClient", "src\JavaScriptClient\JavaScriptClient.csproj", "{1CA9ED73-3A32-494B-927E-54C5607DCCE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{71219274-DE9E-4E13-9CF0-DF8D71F04BB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5BFCC43F-B833-4001-9C2B-8C9C91C5E174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,6 +43,13 @@ Global
 		{1CA9ED73-3A32-494B-927E-54C5607DCCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CA9ED73-3A32-494B-927E-54C5607DCCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CA9ED73-3A32-494B-927E-54C5607DCCE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71219274-DE9E-4E13-9CF0-DF8D71F04BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71219274-DE9E-4E13-9CF0-DF8D71F04BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71219274-DE9E-4E13-9CF0-DF8D71F04BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71219274-DE9E-4E13-9CF0-DF8D71F04BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5BFCC43F-B833-4001-9C2B-8C9C91C5E174} = {43235060-A6E9-4018-9B75-D8562764BC5A}
@@ -51,5 +57,6 @@ Global
 		{CF17AFF9-1F58-4CDF-BF8F-C6D38DBF438D} = {43235060-A6E9-4018-9B75-D8562764BC5A}
 		{EBDAD231-D750-4DF6-BF94-B62CE7DCD193} = {43235060-A6E9-4018-9B75-D8562764BC5A}
 		{1CA9ED73-3A32-494B-927E-54C5607DCCE5} = {43235060-A6E9-4018-9B75-D8562764BC5A}
+		{71219274-DE9E-4E13-9CF0-DF8D71F04BB8} = {43235060-A6E9-4018-9B75-D8562764BC5A}
 	EndGlobalSection
 EndGlobal

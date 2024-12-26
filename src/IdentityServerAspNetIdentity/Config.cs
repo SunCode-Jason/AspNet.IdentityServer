@@ -27,11 +27,23 @@ public static class Config
             }
         ];
 
+    public static IEnumerable<ApiResource> ApiResources =>
+        [
+            new ApiResource("test.api", "Test API")
+            {
+                UserClaims = { JwtClaimTypes.Role, JwtClaimTypes.Name,  "rolename" },
+                Scopes = ["test.api"],
+                ApiSecrets = new List<Secret>{ new Secret("api_secret".Sha256()) }
+            }
+        ];
+
+
     public static IEnumerable<ApiScope> ApiScopes =>
         [
             new ApiScope("scope1"),
             new ApiScope("scope2"),
-            new ApiScope(name: "api1", displayName: "My API")
+            new ApiScope(name: "api1", displayName: "My API"),
+            new ApiScope("test.api")
         ];
 
     public static IEnumerable<Client> Clients =>
@@ -77,7 +89,8 @@ public static class Config
                     "api1",
                     "color"
                 }
-            },// JavaScript BFF client
+            },
+            // JavaScript BFF client
             new Client
             {
                 ClientId = "bff",
@@ -97,6 +110,28 @@ public static class Config
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     "api1"
+                }
+            },
+            // test.api 前端项目
+            new Client {
+                ClientId = "testjs",
+                ClientName = "Test.Admin JavaScript Client",
+                AllowedGrantTypes = GrantTypes.Implicit,
+                AllowAccessTokensViaBrowser = true,
+                RedirectUris =
+                {
+                    "https://localhost:5004/oauth2-redirect.html",
+                },
+                PostLogoutRedirectUris = { "http://localhost:5100" },
+                AllowedCorsOrigins =     { "http://localhost:5100"  },
+
+                AccessTokenLifetime=3600,
+
+                AllowedScopes = {
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    "roles",
+                    "test.api"
                 }
             },
             // m2m client credentials flow client
